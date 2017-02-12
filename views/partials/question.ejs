@@ -1,10 +1,9 @@
 <div class="page-header">
-  <h3>
-    <a ng-show="question.link" href="{{question.link}}">
-      {{question.title}}
-    </a>
-    <span ng-hide="question.link">{{question.title}}</span>
-  </h3>
+<h2>{{question.title}} </h2>
+<h5>{{question.author}} </h5>
+<h6>{{question.date | date : "MMM d, y h:mm a"}} </h6>
+
+
 </div>
 <div ng-repeat="answer in question.answers | orderBy: '-(upvotes - downvotes)'" ng-mouseenter="answer.hover = true" ng-mouseleave="answer.hover = false">
   {{answer.upvotes - answer.downvotes}}

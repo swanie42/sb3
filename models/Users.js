@@ -8,6 +8,10 @@ var UserSchema = new mongoose.Schema({
     lowercase: true,
     unique: true
   },
+  created: {
+    type: Date,
+    default: Date.now
+  },
   upvotedQuestions: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Question"

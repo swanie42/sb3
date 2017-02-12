@@ -26,7 +26,11 @@ var QuestionSchema = new mongoose.Schema({
   answers: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Answer"
-  }]
+  }],
+  date: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 QuestionSchema.methods.upvote = function(user, callback) {

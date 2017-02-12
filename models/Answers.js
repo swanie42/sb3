@@ -25,6 +25,10 @@ var AnswerSchema = new mongoose.Schema({
   question: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Question"
+  },
+  date: {
+    type: Date,
+    default: Date.now
   }
 });
 
