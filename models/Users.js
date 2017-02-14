@@ -28,6 +28,10 @@ var UserSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Answer"
   }],
+  points: {
+    type: Number,
+    default: "0"
+  },
   hash: String,
   salt: String
 });

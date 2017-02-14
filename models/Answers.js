@@ -29,7 +29,7 @@ var AnswerSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
 });
 
 AnswerSchema.methods.upvote = function(user, callback) {

@@ -1,7 +1,27 @@
 <section class="jumbotron text-center" style="width: 100vw; height:600px; position: relative;left: 50%;transform: translate(-50%); background:url('http://denveryoungprofessionals.com/wp-content/uploads/2015/01/denver-skyline.jpg')">
-    <h1>Denver</h1>
-      <p>Resize this responsive page to see the effect!</p>
+    <div class="media row col-md-8 col-md-offset-2">
+        <h1 style="color:white; background-color:rgba(000, 0, 0, 0.5);">The best place to find out what's happening in Denver</h1>
+    </div>
+
+
 </section>
+<div class="media row col-md-8 col-md-offset-2">
+<button ng-show="isLoggedIn() && !shouldShowAddNewQuestionForm" style="position:absolute; bottom:100px;"ng-click="showAddNewQuestionForm()" class="btn btn-primary">Ask the locals!</button>
+
+<div style="margin-top:30px;">
+  <form ng-show="isLoggedIn() && shouldShowAddNewQuestionForm" role="form" ng-submit="addQuestion()">
+    <div class="form-group has-feedback">
+      <label class="control-label" for="inputTitle">Title</label>
+      <input class="form-control" id="inputTitle" placeholder="Title" type="text" ng-model="title">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="button" class="btn btn-cancel pull-right" ng-click="hideAddNewQuestionForm()">Cancel</button>
+  </form>
+  <div ng-hide="isLoggedIn()">
+    <h3>You need to <a ui-sref="login">Log In</a> or <a ui-sref="register">Register</a> before you can add a question.</h3>
+  </div>
+</div>
+</div>
 <div class="media row col-md-8 col-md-offset-2" ng-repeat="question in questions | orderBy: '-date'" ng-mouseenter="question.hover = true" ng-mouseleave="question.hover = false">
     <!-- <div class="col-xs-1 pull-left">
       <a href="" ng-click="incrementUpvotes(question)"><i class="fa fa-lg fa-chevron-up" ng-class="getUpvoteColor(question)" ng-mouseenter="question.upvoteHover = true" ng-mouseleave="question.upvoteHover = false"></i></a>
@@ -17,7 +37,7 @@
     </a></h4>
     <footer>
         <p> <span ng-show="question.author">
-           posted by <a>{{question.author.username}}</a> | {{question.date | date: "MMM d, y h:mm a"}}
+           posted by <a>{{question.author.username}}</a> | {{question.author.points}} | {{question.date | date: "MMM d, y h:mm a"}} 
             </span>
         </p>
     </footer>
@@ -36,19 +56,3 @@
     </div>
 <hr>
 </div>
-
-
-            <div style="margin-top:30px;">
-              <button ng-show="isLoggedIn() && !shouldShowAddNewQuestionForm" ng-click="showAddNewQuestionForm()" class="btn btn-primary">Add Question</button>
-              <form ng-show="isLoggedIn() && shouldShowAddNewQuestionForm" role="form" ng-submit="addQuestion()">
-                <div class="form-group has-feedback">
-                  <label class="control-label" for="inputTitle">Title</label>
-                  <input class="form-control" id="inputTitle" placeholder="Title" type="text" ng-model="title">
-                </div>
-                <button type="submit" class="btn btn-success">Submit</button>
-                <button type="button" class="btn btn-cancel pull-right" ng-click="hideAddNewQuestionForm()">Cancel</button>
-              </form>
-              <div ng-hide="isLoggedIn()">
-                <h3>You need to <a ui-sref="login">Log In</a> or <a ui-sref="register">Register</a> before you can add a question.</h3>
-              </div>
-            </div>
