@@ -3,25 +3,8 @@
 <h5>{{question.author}} </h5>
 <h6>{{question.date | date : "MMM d, y h:mm a"}} </h6>
 
-
-</div>
-<div ng-repeat="answer in question.answers | orderBy: '-(upvotes - downvotes)'" ng-mouseenter="answer.hover = true" ng-mouseleave="answer.hover = false">
-  {{answer.upvotes - answer.downvotes}}
-  <a href="" ng-click="incrementUpvotes(answer)">
-    <i class="fa fa-lg fa-thumbs-up" ng-class="getUpvoteColor(answer)" ng-mouseenter="answer.upvoteHover = true" ng-mouseleave="answer.upvoteHover = false"></i>
-  </a>
-  <a href="" ng-click="incrementDownvotes(answer)">
-    <i class="fa fa-lg fa-thumbs-down" ng-class="getDownvoteColor(answer)" ng-mouseenter="answer.downvoteHover = true" ng-mouseleave="answer.downvoteHover = false"></i>
-  </a> - by {{answer.author.username}}
-  <span style="font-size:20px; margin-left:10px;">{{answer.body}}</span>
-  <div class="vertical-align pull-right" ng-show="showDeleteAnswer(answer) && answer.hover">
-    <a href="" ng-click="deleteAnswer(answer)">
-      <i class="fa fa-lg fa-remove text-danger"></i>
-    </a>
-  </div>
-</div>
 <div style="margin-top:30px;">
-  <button ng-show="isLoggedIn() && !shouldShowAddNewAnswerForm" ng-click="showAddNewAnswerForm()" class="btn btn-primary">Add Answer</button>
+  <button ng-show="isLoggedIn() && !shouldShowAddNewAnswerForm" ng-click="showAddNewAnswerForm()" class="btn btn-primary" style="top:0px; right:0px;">Add Answer</button>
   <form role="form" ng-show="isLoggedIn() && shouldShowAddNewAnswerForm" ng-submit="addAnswer()">
     <div class="form-group has-feedback">
       <label class="control-label" for="inputAnswer">Answer</label>
@@ -33,4 +16,39 @@
   <div ng-hide="isLoggedIn()">
     <h3>You need to <a ui-sref="login">Log In</a> or <a ui-sref="register">Register</a> before you can add answer.</h3>
   </div>
+</div>
+
+</div>
+<div class="media row" ng-repeat="answer in question.answers | orderBy: '-(upvotes - downvotes)'" ng-mouseenter="answer.hover = true" ng-mouseleave="answer.hover = false">
+    <div class="col-xs-1 pull-left">
+      <a href="" ng-click="incrementUpvotes(answer)">
+        <i class="fa fa-lg fa-chevron-up" ng-class="getUpvoteColor(answer)" ng-mouseenter="answer.upvoteHover = true" ng-mouseleave="answer.upvoteHover = false"></i></a>
+        <h5 style="margin-left: 5px;">{{answer.upvotes - answer.downvotes}} </h5>
+      <a href="" ng-click="incrementDownvotes(answer)">
+        <i class="fa fa-lg fa-chevron-down" ng-class="getDownvoteColor(answer)" ng-mouseenter="answer.downvoteHover = true" ng-mouseleave="answer.downvoteHover = false"></i></a>
+    </div>
+    <div class="media-left">
+        <img src="//placehold.it/50/11e1E7/fff&text={{answer.author.username | limitTo : 2}}" alt="User Avatar" class="img-circle media-object" style="width:60px">
+    </div>
+
+
+  <div class="media-body">
+    <h4 class="media-heading"><p ng-show="question.title" ui-sref="question({ id: question._id })">
+      {{answer.body}}
+    </p></h4>
+    <footer>
+        <p> <span ng-show="question.author">
+           posted by <a>{{answer.author.username}}</a> | {{answer.date | date: "MMM d, y h:mm a"}}
+            </span>
+        </p>
+    </footer>
+  </div>
+  <div class="media-right" ng-show="showDeleteAnswer(answer) && answer.hover">
+      <span class="media-object" style="width:20px">
+            <a href="" ng-click="deleteAnswer(answer)">
+              <i class="fa fa-lg fa-remove text-danger"></i>
+            </a>
+      </span>
+    </div>
+<hr>
 </div>
