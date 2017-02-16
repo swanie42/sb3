@@ -5,6 +5,7 @@
     "street-buff.controllers.main",
     "street-buff.controllers.question",
     "street-buff.controllers.auth",
+    "street-buff.controllers.companies.auth",
     "street-buff.controllers.nav",
     "street-buff.services.question",
     "street-buff.services.auth",

@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  
+
   var app = angular.module("street-buff.services.auth", []);
 
   app.factory("authService", [
@@ -53,6 +53,12 @@
         });
       }
 
+      function companySignUp(company) {
+        return $http.post("/companies", company).success(function(data) {
+        //   auth.saveToken(data.token);
+        });
+      }
+
       function logIn(user) {
         return $http.post("/login", user).success(function(data) {
           auth.saveToken(data.token);
@@ -71,6 +77,9 @@
       auth.register = register;
       auth.logIn = logIn;
       auth.logOut = logOut;
+      auth.companySignUp = companySignUp;
+
+
 
       return auth;
     }

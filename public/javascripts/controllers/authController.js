@@ -1,6 +1,6 @@
 (function() {
   "use strict";
-  
+
   var app = angular.module("street-buff.controllers.auth", [
     "ui.router"
   ]);

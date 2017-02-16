@@ -9,6 +9,10 @@ var mongoose = require("mongoose");
 require("./models/Questions");
 require("./models/Answers");
 require("./models/Users");
+require("./models/Coupons");
+require("./models/Companies");
+
+
 
 var passport = require("passport");
 require("./config/passport");
@@ -19,6 +23,10 @@ var questionsRoutes = require("./routes/questions");
 var answersRoutes = require("./routes/answers");
 var authRoutes = require("./routes/auth");
 var usersRoutes = require("./routes/users");
+var companiesRoutes = require("./routes/companies");
+// var couponsRoutes = require("./routes/coupons");
+
+
 
 var app = express();
 
@@ -44,6 +52,10 @@ app.use("/", questionsRoutes);
 app.use("/", answersRoutes);
 app.use("/", authRoutes);
 app.use("/", usersRoutes);
+app.use("/", companiesRoutes);
+// app.use("/", couponsRoutes);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
